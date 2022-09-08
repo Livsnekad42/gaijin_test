@@ -8,6 +8,7 @@ django = "*"
 djangorestframework = "*"
 djangorestframework-jwt = "==1.11.0"
 pillow = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 

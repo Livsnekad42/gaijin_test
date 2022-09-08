@@ -35,6 +35,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'rest_framework',
+    'authentication',
+    'players',
 ]
 
 MIDDLEWARE = [
@@ -47,7 +51,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'gaijin_backend.urls'
+ROOT_URLCONF = 'main.urls'
 
 TEMPLATES = [
     {
@@ -67,7 +71,7 @@ TEMPLATES = [
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'apps.authentication.backends.JWTAuthentication',
+        'authentication.backends.JWTAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
@@ -81,7 +85,11 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
 }
 
-WSGI_APPLICATION = 'gaijin_backend.wsgi.application'
+
+AUTH_USER_MODEL = 'authentication.User'
+
+
+WSGI_APPLICATION = 'main.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -132,4 +140,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'authentication.User'
+

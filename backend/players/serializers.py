@@ -5,6 +5,24 @@ from django.core.files.base import ContentFile
 from rest_framework import serializers
 
 
+class GameSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(db_index=True, primary_key=True)
+    name = serializers.CharField(max_length=80)
+
+
+class CharacterSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(db_index=True, primary_key=True)
+    name = serializers.CharField(max_length=80)
+
+
+class CharacterPlayedSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(db_index=True, primary_key=True)
+    name = serializers.CharField(max_length=80)
+    game = GameSerializer()
+    character = CharacterSerializer()
+    level = serializers.IntegerField(blank=True, null=True)
+
+
 class PlayerSerializer(serializers.ModelSerializer):
     username = serializers.CharField(max_length=80)
     score = serializers.IntegerField(required=False, blank=True, null=True)
@@ -29,3 +47,9 @@ class PlayerSerializer(serializers.ModelSerializer):
 
         instance.save()
         return instance
+
+
+class GameInstanceSerializer(serializers.ModelSerializer):
+    player = PlayerSerializer()
+    game = GameSerializer()
+    character_played = CharacterPlayedSerializer()

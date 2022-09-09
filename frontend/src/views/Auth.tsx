@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import UserForm from './UserForm';
+import UserForm from '../components/UserForm';
 import {observer} from "mobx-react-lite";
 
 
